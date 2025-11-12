@@ -66,6 +66,7 @@ array_keys($personne);
 // afficher les personnes
 foreach($personne as $cle=>$valeur){
     echo "$cle: $valeur<br>";
+    echo " Bonjour les devs";
 }
 
 
