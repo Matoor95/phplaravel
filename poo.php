@@ -101,38 +101,38 @@ declare(strict_types=1);
 
 // echo $personne1->sePresenter();
 // sythase 2
-class Animnal
-{
-    // declaration et initialisation en seuke ligne
-    public function __construct(
-        public string $nom,
-        public string $espece,
-        public int $age
-    ) {
-        echo " Un nouvel animal est ajoute :{$this->nom}, {$this->espece}, {$this->age} ans.\n";
-    }
-    public function sePresenter(): string
-    {
-        return "Bonjour voici votre animal {$this->nom} de l'espece{$this->espece} et il agee de {$this->age}";
-    }
-}
+// class Animnal
+// {
+//     // declaration et initialisation en seuke ligne
+//     public function __construct(
+//         public string $nom,
+//         public string $espece,
+//         public int $age
+//     ) {
+//         echo " Un nouvel animal est ajoute :{$this->nom}, {$this->espece}, {$this->age} ans.\n";
+//     }
+//     public function sePresenter(): string
+//     {
+//         return "Bonjour voici votre animal {$this->nom} de l'espece{$this->espece} et il agee de {$this->age}";
+//     }
+// }
 
 
-// Destructeur 
-// le destrcuteur est appele quand l'objet est detruit ou que le script se termine
-class Connexion
-{
-    private string $serveur;
-    public function __construct(string $serveur)
-    {
-        $this->serveur = $serveur;
-        echo "connexion au serveur {$this->serveur} \n";
-    }
-    public function __destruct()
-    {
-        echo " Fermeture de la connexion au serveur {$this->serveur}";
-    }
-}
+// // Destructeur 
+// // le destrcuteur est appele quand l'objet est detruit ou que le script se termine
+// class Connexion
+// {
+//     private string $serveur;
+//     public function __construct(string $serveur)
+//     {
+//         $this->serveur = $serveur;
+//         echo "connexion au serveur {$this->serveur} \n";
+//     }
+//     public function __destruct()
+//     {
+//         echo " Fermeture de la connexion au serveur {$this->serveur}";
+//     }
+// }
 // $connexion = new Connexion("localhost");
 // le destructeur sera appele automatiquement a la fin du script
 
@@ -141,50 +141,173 @@ class Connexion
 // proteted: Accessible dans la classe et les classes enfants
 // private: Accessible uniquement dans la classe elle meme
 
-class ComptBancaire
-{
-    public string $titulaire;
-    protected string $numeroCarte;
-    private float $solde;
-    public  function __construct(string $titulaire, float $soldeInitial)
-    {
-        $this->titulaire = $titulaire;
-        $this->solde = $soldeInitial;
-        $this->numeroCarte = $this->genererNumeroCarte();
+// class ComptBancaire
+// {
+//     public string $titulaire;
+//     protected string $numeroCarte;
+//     private float $solde;
+//     public  function __construct(string $titulaire, float $soldeInitial)
+//     {
+//         $this->titulaire = $titulaire;
+//         $this->solde = $soldeInitial;
+//         $this->numeroCarte = $this->genererNumeroCarte();
+//     }
+
+//     public function genererNumeroCarte(): string
+//     {
+//         return "MMMM" . rand(1000, 9999);
+//     }
+
+
+//     public function deposer(float $montant): void
+//     {
+//         if ($montant > 0) {
+//             $this->solde += $montant;
+//             echo " Depot de {$montant} $ effectue .\n";
+//         }
+//     }
+//     public function retirer( float $montant):void{
+//         if($montant> 0 && $montant <=$this->solde){
+//             $this->solde -=$montant;
+//             echo "Retrait DE {$montant} $ effectue avec success";
+//         }
+//         echo " Solde insuffisant .\n";
+
+//     }
+//     public function consulterSolde(): float
+//     {
+//         return $this->solde;
+//     }
+
+// }
+
+// $compte= new ComptBancaire("Mbene", 1000);
+// echo $compte->titulaire . "\n";
+// // echo $compte->solde . "\n"; // Erreur: propriete privee
+
+// $compte->deposer(5000);
+// $compte->retirer(2000);
+// echo " Solde actuel : " . $compte->consulterSolde() . "\n";
+
+class Produit{
+    private string $nom;
+    private float $prix;
+
+    public function __construct ( string $nom , float $prix){
+        $this->nom=$nom;
+        $this->prix= $prix;
     }
 
-    public function genererNumeroCarte(): string
-    {
-        return "MMMM" . rand(1000, 9999);
-    }
+// Getter pour le nom
+public function getNom(): string{
+    return $this->nom;
+}
+// Setter pour le nom
+public function setNom(string $nom){
+    return $this->nom=$nom;
+}
+// getter pour prix
+public function getPrix():float{
+    return $this->prix;
+}
 
-
-    public function deposer(float $montant): void
-    {
-        if ($montant > 0) {
-            $this->solde += $montant;
-            echo " Depot de {$montant} $ effectue .\n";
-        }
+// setter pour le prix
+public function setPrix(float $prix){
+    if($prix<0){
+        throw new Exception("Le prix doit etre superieur a 0");
     }
-    public function retirer( float $montant):void{
-        if($montant> 0 && $montant <=$this->solde){
-            $this->solde -=$montant;
-            echo "Retrait DE {$montant} $ effectue avec success";
-        }
-        echo " Solde insuffisant .\n";
+    $this->prix=$prix;
+
+}
+    
+}
+
+// instancier ou creer un objet de la classe Produit
+$produit= new Produit ("Ordinateur", 4000);
+// echo $produit->getNom()."\n";
+// echo $produit->getPrix();
+$produit->setPrix(1500);
+$produit->setNom("Smartphone");
+// echo $produit->getNom()."\n";
+// echo $produit->getPrix();
+// heritage
+// classe peut heriter des proprietes et methodes d'une autre classe
+class Animal{
+    protected string $nom;
+    protected int $age;
+    public function __construct( string $nom, int $age){
+        $this->nom=$nom;
+        $this->age=$age;
+    }
+    public function manger():void{
+        echo "{$this->nom} mange .\n";
+    }
+    public function dormir():void{
+        echo "{$this->nom} dort .\n";
+    }
+}
+class Chat extends Animal{
+    private string $race;
+
+    public function __construct(string $nom, int $age, string $race){
+        parent::__construct($nom, $age);
+        $this->race=$race;
 
     }
-    public function consulterSolde(): float
-    {
-        return $this->solde;
+    public function miauler():void{
+        echo "{$this->nom} miaule .\n";
+    }
+    public function afficherInfos():void{
+        echo " Chat : {$this->nom}, {$this->age}, race {$this->race} \n";
     }
 
 }
+// $chat=new Chat ("Dame", 2, "Siamois");
+// $chat->manger();
+// $chat->miauler();
+// $chat->afficherInfos();
 
-$compte= new ComptBancaire("Mbene", 1000);
-echo $compte->titulaire . "\n";
-// echo $compte->solde . "\n"; // Erreur: propriete privee
+// classe abstraite 
+//C'est une classe qu'on ne peut pas instancier directement
+// elle sert de modele pour d'autres classes
 
-$compte->deposer(5000);
-$compte->retirer(2000);
-echo " Solde actuel : " . $compte->consulterSolde() . "\n";
+abstract class Vehicule{
+    protected string $marque;
+    protected string $modele;
+    public function __construct(string $marque, string $modele){
+        $this->marque=$marque;
+        $this->modele=$modele;
+    }
+    // methode abstraite (doit etre implemente dans les classes enfants)
+    abstract public function demarrer():void;
+    abstract public function arreter():void;
+    // Methode concrete ( peut etre herite directement)
+    public function afficherInfos():void{
+        echo " Vehicule : {$this->marque} , {$this->modele} \n";
+    }
+}
+
+class voiture extends Vehicule{
+    private int $nombrePortes;
+    public function __construct(string $marque, string $modele, int $nombrePortes){
+        parent::__construct($marque, $modele);
+        $this->nombrePortes=$nombrePortes;
+    }
+    public function demarrer(): void
+    {
+        echo " La voiture {$this->marque} demarre .\n";
+    }
+    public function arreter(): void
+    {
+        echo " La voiture {$this->marque} s'arrete .\n";
+    }
+}
+
+$voiture = new Voiture("Toyota", "Corolla", 4);
+$voiture->afficherInfos();
+$voiture->demarrer();
+$voiture->arreter();
+
+// l'objectif du cours prochain in sha allah c'est de voir les methodes get , post 
+// session , cookie 
+// crud ( create, read, update and delete) pour un produit avec mysql comme base de donneess
