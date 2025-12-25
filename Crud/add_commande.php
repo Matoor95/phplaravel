@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $stmt->bindValue(':total', $total);
                 $stmt->execute();
-                header('Location:add_commande.php');
+                header('Location:liste_commandes.php');
             }
         } catch (PDOException $e) {
             $message = "Erreur lose de l'ajout de la commande".$e->getMessage();
